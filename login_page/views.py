@@ -4,7 +4,7 @@ from .form import login_form
 # Create your views here.
 
 def login_page_index_page(request):
-	request.session.set_expiry(86400)
+	request.session.set_expiry(57600)
 
 	senders =[]
 	obj = login_model.objects.all()

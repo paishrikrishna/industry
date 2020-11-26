@@ -40,7 +40,7 @@
 		  <a href="#band" class="w3-button w3-bar-item">Camera</a>
 
 		  <a href="#tour" class="w3-button w3-bar-item">Attendance</a>
-		  <a href="#tour" class="w3-button w3-bar-item">Message</a>
+		  <a href="../../{{ session_key }}/messages/" class="w3-button w3-bar-item">Message</a>
 		  
 		  <div  style="float: right;">
 			<form action="http://127.0.0.1:8000/" method="POST" style="display: inline;"> {% csrf_token %}
@@ -61,7 +61,7 @@
 				TO :
 				<select id="recivers" name="recivers" style="width: 95%:" required></select>
 				<p>MESSAGE :</p> 
-				<textarea style="width: 97%;height:200px;" required></textarea>
+				<textarea style="width: 97%;height:200px;" name="message" required></textarea>
 				<p>
 					<input type="submit" name="action" value="Send Message" style="margin-left: 45%;">
 				</p>	

@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import path
 from login_page.views import login_page_index_page
 from homepage.views import homepage_index_page
+from messaging_module.views import messages_index_page
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',login_page_index_page),
     path('<str:session_key>/homepage/',homepage_index_page),
+    path('<str:session_key>/messages/',messages_index_page),
 ]
