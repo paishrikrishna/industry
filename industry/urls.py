@@ -20,5 +20,5 @@ from homepage.views import homepage_index_page
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',login_page_index_page),
-    path('<str:user>/homepage/',homepage_index_page),
+    path('<str:session_key>/homepage/',homepage_index_page),
 ]

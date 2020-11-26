@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html>
+
+	<meta charset="UTF-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
+
+	<head>
+		<title>Industry</title>
+		<style type="text/css">
+			#notice{
+				width: 90%;
+				color: black;
+				font-size: 15px;
+				margin: auto;
+				margin-top: 20px;
+				padding: 10px 10px 10px 10px;
+				border-style: solid;
+				border-width: 2px;
+				border-radius: 20px;
+				overflow-x: hidden;
+			}
+			#notice_form{
+				margin-top: 2%;
+				margin-bottom: 2%;
+				margin-left: 20px;
+			}
+		</style>
+	</head>
+	<body>
+
+		<nav class="w3-bar w3-black" style="font-size: 20px;">
+
+		  <a href="../../{{ session_key }}/homepage/" class="w3-button w3-bar-item">Home</a>
+
+		  <a href="#band" class="w3-button w3-bar-item">Camera</a>
+
+		  <a href="#tour" class="w3-button w3-bar-item">Attendance</a>
+		  <a href="#tour" class="w3-button w3-bar-item">Message</a>
+		  
+		  <div  style="float: right;">
+			<form action="http://127.0.0.1:8000/" method="POST" style="display: inline;"> {% csrf_token %}
+				<input type="text" name="session_key" value="{{ session_key }}" readonly="1" style="display: none;">
+				<input type="submit" name="action" value="LOGOUT" class="w3-button w3-bar-item">
+			</form>
+		</div>
+
+		</nav>
+
+		{% block content %}
+
+		<div style="text-align: center;margin-top: 10px;font-size: 20px;">
+			Send Message
+		</div>
+		<div id="notice">
+			<form id="notice_form" method="POST" action="http://127.0.0.1:8000/{{ session_key }}/homepage/"> {% csrf_token %}
+				TO :
+				<select id="recivers" name="recivers" style="width: 95%:" required></select>
+				<p>MESSAGE :</p> 
+				<textarea style="width: 97%;height:200px;" required></textarea>
+				<p>
+					<input type="submit" name="action" value="Send Message" style="margin-left: 45%;">
+				</p>	
+			</form>
+			
+		</div>
+
+		{% autoescape off %}
+			<script type="text/javascript">
+				var senders = ("{{ senders }}").replace("[","").replace("]","").split(",");
+				var x = document.getElementById('recivers');
+				count=0;
+				for(var j=0;j<senders.length;j++){
+					if(senders[j].replace("'","").replace("'","") != ""){
+						var opt = document.createElement("option");
+						opt.innerHTML= senders[j].replace("'","").replace("'","");	
+						x.append(opt);
+						count++;		
+					}
+				}
+
+			</script>
+		{% endautoescape %}
+		{% endblock %}
+		
+	</body>
+</html>
+
+​
